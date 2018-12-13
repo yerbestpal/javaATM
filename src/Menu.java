@@ -76,10 +76,14 @@ public class Menu {
                                case 3:
                                    // view accounts
                                    System.out.println(accountList);
+                                   break;
+                               case 4:
+                                   // view and edit accounts
+                                   break;
 
-//                                default:
-//                                    System.out.println("Please choose a valid option");
-//                                    break;
+                                default:
+                                    System.out.println("Please choose a valid option");
+                                    break;
                            }
 
                        } else {
