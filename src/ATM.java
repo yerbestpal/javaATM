@@ -3,6 +3,8 @@
  * Proof of concept ATM program to for practice
  */
 
+import java.util.ArrayList;
+
 // driver class
 public class ATM {
 

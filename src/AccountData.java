@@ -7,10 +7,17 @@ public class AccountData {
     String pin;
     double balance = 0;
 
-    // constructor
-    public AccountData() {
+
+
+    // giving object sane name
+    @Override
+    public String toString() {
+
+        return firstName + " " + lastName;
 
     }
+
+
 
     // set
 
@@ -31,6 +38,7 @@ public class AccountData {
     public void setAddress(String addr) {
 
         address = addr;
+
     }
 
 
