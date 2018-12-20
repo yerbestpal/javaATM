@@ -6,7 +6,6 @@ public class Menu {
     // ArrayList containing user bank accounts
     // TODO - eventually replace ArrayList with database
     ArrayList<AccountData> accountList = new ArrayList<AccountData>();
-    AccountData account = new AccountData();
 
     Scanner menuScan = new Scanner(System.in);
 
@@ -79,6 +78,9 @@ public class Menu {
 
                 switch (j) {
                     case 1:
+                        // create new instance of AccountData
+                        AccountData account = new AccountData();
+
                         // add account
                         Scanner accScan = new Scanner(System.in);
 
