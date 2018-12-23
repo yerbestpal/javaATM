@@ -62,19 +62,19 @@ public class Menu {
     public void admin() {
 
 
-
         for (int i = 3; i > 0; i--) {
             System.out.println("Please enter the administrators passcode: "); // passcode is 1234
             int passcode = menuScan.nextInt();
             if (passcode == 1234) {
                 System.out.println("Passcode is correct");
-
-
-                // contains a nested switch
+                
                 System.out.println("1: Add Account");
                 System.out.println("2: Remove Account");
                 System.out.println("3: View Accounts");
+                System.out.println("4: Edit Accounts");
+                System.out.println("5: Back to main menu");
                 int j = menuScan.nextInt();
+
 
                 switch (j) {
                     case 1:
@@ -104,14 +104,15 @@ public class Menu {
                         break;
                     case 4:
                         //TODO - view and edit accounts
-
-
                         break;
-
+                    case 5:
+                        // back to main menu
+                        return;
                     default:
                         System.out.println("Please choose a valid option");
                         break;
                 }
+
 
             } else {
                 System.out.println("Passcode is incorrect, please try again.");
@@ -120,11 +121,8 @@ public class Menu {
             if (i == 0) {
                 System.out.println("You have tried too many times");
             }
+
         }
-
-
     }
-
-
 }
 
