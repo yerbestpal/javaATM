@@ -67,7 +67,7 @@ public class Menu {
             int passcode = menuScan.nextInt();
             if (passcode == 1234) {
                 System.out.println("Passcode is correct");
-                
+
                 System.out.println("1: Add Account");
                 System.out.println("2: Remove Account");
                 System.out.println("3: View Accounts");
