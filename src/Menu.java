@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class Menu {
 
-    // ArrayList containing user bank accounts
+    //     ArrayList containing user bank accounts
     // TODO - eventually replace ArrayList with database
-    ArrayList<AccountData> accountList = new ArrayList<AccountData>();
+    ArrayList<AccountCreator> accountList = new ArrayList<AccountCreator>();
     Scanner menuScan = new Scanner(System.in);
 
-    // initial menu for user to choose options
+    //     main menu for user to choose options
     public void menu() {
 
         while (true) {
@@ -44,7 +44,7 @@ public class Menu {
                     // TODO - change PIN
                     break;
                 case 7:
-                    // call admin method
+//                     call admin method
                     admin();
                     break;
                 default:
@@ -57,7 +57,7 @@ public class Menu {
 
     }
 
-    // case 7: admin settings
+    //     case 7: administrator settings
     public void admin() {
 
 
@@ -76,14 +76,12 @@ public class Menu {
                     int j = menuScan.nextInt();
 
                     Scanner accScan = new Scanner(System.in);
+//                     create new instance of AccountCreator
+                    AccountCreator account = new AccountCreator();
 
                     switch (j) {
                         case 1:
-                            // create new instance of AccountData
-                            AccountData account = new AccountData();
-
-                            // add account
-
+//                             add account
                             System.out.println("Please enter the following account details: ");
                             System.out.println("First name: ");
                             account.setFirstName(accScan.next());
@@ -99,8 +97,9 @@ public class Menu {
                             // TODO - remove account
                             break;
                         case 3:
+//                            view accounts
 //                          iterates through accountList and prints contents alongside position number
-                            for(int k = 0; k < accountList.size(); k++) {
+                            for (int k = 0; k < accountList.size(); k++) {
                                 System.out.print(k + ": " + accountList.get(k) + " || ");
                             }
                             System.out.println();
@@ -109,29 +108,43 @@ public class Menu {
 
                             break;
                         case 4:
-                            //TODO - view and edit accounts
+//                             view and edit accounts
                             System.out.println("Please select one of the following accounts to edit by entering the corresponding number: ");
                             System.out.println();
 
 //                            iterates through accountList and prints contents alongside position number
-                            for(int k = 0; k < accountList.size(); k++) {
+                            for (int k = 0; k < accountList.size(); k++) {
                                 System.out.println(k + ": " + accountList.get(k) + " || ");
                             }
                             System.out.println();
                             System.out.println("-------------------------------------");
                             System.out.println();
 
-                            // TODO - find an alternative to switch which will allow me to select on object from arrayList to edit
-                            int l = accScan.nextInt();
+                            int m = accScan.nextInt();
+                            for (int l = 0; l < accountList.size(); l++) {
+                                if (m == l) {
+                                    System.out.println(accountList.get(m));
+                                    System.out.println("Please enter the following account details: ");
+                                    System.out.println("First name: ");
+                                    accountList.get(m).setFirstName(accScan.next());
+                                    System.out.println("Last name: ");
+                                    accountList.get(m).setLastName(accScan.next());
+                                    System.out.println("Full address: ");
+                                    accountList.get(m).setAddress(accScan.next());
 
-                            switch(l) {
-                                case l:
-
+                                    System.out.println("The new account details are as follows: ");
+                                    System.out.println("First name: " + accountList.get(m).firstName);
+                                    System.out.println("Last name: " + accountList.get(m).lastName);
+                                    System.out.println("Full address: " + accountList.get(m).address);
+                                    System.out.println();
+                                    System.out.println("-------------------------------------");
+                                    System.out.println();
+                                }
                             }
 
                             break;
                         case 5:
-                            // back to main menu
+//                             back to main menu
                             return;
                         default:
                             System.out.println("Please choose a valid option");

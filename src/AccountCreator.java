@@ -1,4 +1,4 @@
-public class AccountData {
+public class AccountCreator {
 
     // variables
     String firstName;
