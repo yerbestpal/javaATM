@@ -1,3 +1,4 @@
+import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -61,7 +62,7 @@ public class Menu {
     public void admin() {
 
 
-        for (int i = 5000; i > 0; i--) {
+        for (int i = 4; i > 0; i--) {
             System.out.println("Please enter the administrators passcode: "); // passcode is 1234
             int passcode = menuScan.nextInt();
 
@@ -97,28 +98,15 @@ public class Menu {
                             // TODO - remove account
                             break;
                         case 3:
-//                            view accounts
-//                          iterates through accountList and prints contents alongside position number
-                            for (int k = 0; k < accountList.size(); k++) {
-                                System.out.print(k + ": " + accountList.get(k) + " || ");
-                            }
-                            System.out.println();
-                            System.out.println("-------------------------------------");
-                            System.out.println();
-
+                            ViewAccounts();
+                            TextSpacer();
                             break;
                         case 4:
-//                             view and edit accounts
+//                          view and edit accounts
                             System.out.println("Please select one of the following accounts to edit by entering the corresponding number: ");
                             System.out.println();
-
-//                            iterates through accountList and prints contents alongside position number
-                            for (int k = 0; k < accountList.size(); k++) {
-                                System.out.println(k + ": " + accountList.get(k) + " || ");
-                            }
-                            System.out.println();
-                            System.out.println("-------------------------------------");
-                            System.out.println();
+                            ViewAccounts();
+                            TextSpacer();
 
                             int m = accScan.nextInt();
                             for (int l = 0; l < accountList.size(); l++) {
@@ -136,15 +124,13 @@ public class Menu {
                                     System.out.println("First name: " + accountList.get(m).firstName);
                                     System.out.println("Last name: " + accountList.get(m).lastName);
                                     System.out.println("Full address: " + accountList.get(m).address);
-                                    System.out.println();
-                                    System.out.println("-------------------------------------");
-                                    System.out.println();
+
                                 }
                             }
 
                             break;
                         case 5:
-//                             back to main menu
+//                          back to main menu
                             return;
                         default:
                             System.out.println("Please choose a valid option");
@@ -155,13 +141,36 @@ public class Menu {
                 } else {
                     System.out.println("Passcode is incorrect, please try again.");
                     System.out.println("You have " + i + " more attempt");
+                    if (i == 0) {
+                        System.out.println("You have tried too many times");
+                        return;
+                    }
                 }
-                if (i == 0) {
-                    System.out.println("You have tried too many times");
-                }
+
 
             }
         }
+    }
+
+
+    public void AddAccounts() {
+
+    }
+
+
+    public void ViewAccounts() {
+//      view accounts
+//      iterates through accountList and prints contents alongside position number
+        for (int k = 0; k < accountList.size(); k++) {
+            System.out.print(k + ": " + accountList.get(k) + " || ");
+        }
+    }
+
+
+    public void TextSpacer() {
+        System.out.println();
+        System.out.println("-------------------------------------");
+        System.out.println();
     }
 }
 
