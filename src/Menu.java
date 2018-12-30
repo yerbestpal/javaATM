@@ -62,12 +62,10 @@ public class Menu {
     public void admin() {
 
 
-        for (int i = 4; i > 0; i--) {
+        for (int attempts = 3; attempts >= 0; attempts--) {
             System.out.println("Please enter the administrators passcode: "); // passcode is 1234
             int passcode = menuScan.nextInt();
 
-            boolean truthCheck = true;
-            while (truthCheck) {
                 if (passcode == 1234) {
                     System.out.println("1: Add Account");
                     System.out.println("2: Remove Account");
@@ -82,7 +80,7 @@ public class Menu {
 
                     switch (j) {
                         case 1:
-//                             add account
+//                          add account
                             System.out.println("Please enter the following account details: ");
                             System.out.println("First name: ");
                             account.setFirstName(accScan.next());
@@ -98,6 +96,7 @@ public class Menu {
                             // TODO - remove account
                             break;
                         case 3:
+//                          view accounts
                             ViewAccounts();
                             TextSpacer();
                             break;
@@ -140,17 +139,22 @@ public class Menu {
 
                 } else {
                     System.out.println("Passcode is incorrect, please try again.");
-                    System.out.println("You have " + i + " more attempt");
-                    if (i == 0) {
-                        System.out.println("You have tried too many times");
-                        return;
+//                    ensuring correct grammar if their is only 1 attempt left
+                    if(attempts != 1) {
+                        System.out.println("You have " + attempts + " attempts");
+                    } else {
+                        System.out.println("You have " + attempts + " attempt");
                     }
+
                 }
+                if (attempts == 0) {
+                    System.out.println("You have tried too many times. The Program will now quit");
+                    System.exit(0);
+            }
 
 
             }
         }
-    }
 
 
     public void AddAccounts() {
