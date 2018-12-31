@@ -7,7 +7,7 @@ public class Menu {
     //     ArrayList containing user bank accounts
     // TODO - eventually replace ArrayList with database
     ArrayList<AccountCreator> accountList = new ArrayList<AccountCreator>();
-    Scanner menuScan = new Scanner(System.in);
+    Scanner myScan = new Scanner(System.in);
 
     //     main menu for user to choose options
     public void menu() {
@@ -23,7 +23,7 @@ public class Menu {
             System.out.println("7: Administrator Settings");
 
 
-            int menuInput = this.menuScan.nextInt();
+            int menuInput = this.myScan.nextInt();
 
             switch (menuInput) {
                 case 1:
@@ -45,9 +45,34 @@ public class Menu {
                     // TODO - change PIN
                     break;
                 case 7:
-//                     call admin method
-                    admin();
-                    break;
+                    block:
+                    { // this is useful for creating a point to break out of loops!
+                        int passcode = 0;
+
+                        for (int attempts = 3; attempts >= 0; attempts--) {
+                            System.out.println("Please enter the administrators passcode: "); // passcode is 1234
+                            passcode = myScan.nextInt();
+
+                            if (passcode == 1234) {
+                                System.out.println("Correct");
+                                TextSpacer();
+                                break;
+                            } else {
+                                System.out.println("Passcode is incorrect, please try again.");
+//                    ensuring correct grammar if their is only 1 attempt left
+                                if (attempts != 1) {
+                                    System.out.println("You have " + attempts + " attempts");
+                                } else {
+                                    System.out.println("You have " + attempts + " attempt");
+                                }
+                                if (attempts == 0) {
+                                    break block;
+                                }
+                            }
+                        }
+                        admin();
+                        break;
+                    }
                 default:
                     System.out.println("Please choose a valid option");
                     break;
@@ -58,106 +83,88 @@ public class Menu {
 
     }
 
-    //     case 7: administrator settings
+
     public void admin() {
+        while (true) {
+            System.out.println("1: Add Account");
+            System.out.println("2: Remove Account");
+            System.out.println("3: View Accounts");
+            System.out.println("4: Edit Accounts");
+            System.out.println("5: Back to main menu");
+            int menuScan = myScan.nextInt();
 
-
-        for (int attempts = 3; attempts >= 0; attempts--) {
-            System.out.println("Please enter the administrators passcode: "); // passcode is 1234
-            int passcode = menuScan.nextInt();
-
-                if (passcode == 1234) {
-                    System.out.println("1: Add Account");
-                    System.out.println("2: Remove Account");
-                    System.out.println("3: View Accounts");
-                    System.out.println("4: Edit Accounts");
-                    System.out.println("5: Back to main menu");
-                    int j = menuScan.nextInt();
-
-                    Scanner accScan = new Scanner(System.in);
+            Scanner accScan = new Scanner(System.in);
 //                     create new instance of AccountCreator
-                    AccountCreator account = new AccountCreator();
+            AccountCreator account = new AccountCreator();
 
-                    switch (j) {
-                        case 1:
+            switch (menuScan) {
+                case 1:
 //                          add account
+                    System.out.println("Please enter the following account details: ");
+                    System.out.println("First name: ");
+                    account.setFirstName(accScan.next());
+                    System.out.println("Last name: ");
+                    account.setLastName(accScan.next());
+                    System.out.println("Full address: ");
+                    account.setAddress(accScan.next());
+
+                    accountList.add(account);
+
+                    break;
+                case 2:
+                    System.out.println("Please select one of the following accounts to remove by entering the corresponding number: ");
+                    System.out.println();
+                    ViewAccounts();
+                    TextSpacer();
+
+                    int a = accScan.nextInt();
+                    for (int b = 0; b < accountList.size(); b++) {
+                        if (a == b) {
+                            accountList.remove(a);
+                        }
+                    }
+                    break;
+                case 3:
+//                      view accounts
+                    ViewAccounts();
+                    TextSpacer();
+                    break;
+                case 4:
+//                      view and edit accounts
+                    System.out.println("Please select one of the following accounts to edit by entering the corresponding number: ");
+                    System.out.println();
+                    ViewAccounts();
+                    TextSpacer();
+
+                    int m = accScan.nextInt();
+                    for (int l = 0; l < accountList.size(); l++) {
+                        if (m == l) {
+                            System.out.println(accountList.get(m));
                             System.out.println("Please enter the following account details: ");
                             System.out.println("First name: ");
-                            account.setFirstName(accScan.next());
+                            accountList.get(m).setFirstName(accScan.next());
                             System.out.println("Last name: ");
-                            account.setLastName(accScan.next());
+                            accountList.get(m).setLastName(accScan.next());
                             System.out.println("Full address: ");
-                            account.setAddress(accScan.next());
+                            accountList.get(m).setAddress(accScan.next());
 
-                            accountList.add(account);
+                            System.out.println("The new account details are as follows: ");
+                            System.out.println("First name: " + accountList.get(m).firstName);
+                            System.out.println("Last name: " + accountList.get(m).lastName);
+                            System.out.println("Full address: " + accountList.get(m).address);
 
-                            break;
-                        case 2:
-                            // TODO - remove account
-                            break;
-                        case 3:
-//                          view accounts
-                            ViewAccounts();
-                            TextSpacer();
-                            break;
-                        case 4:
-//                          view and edit accounts
-                            System.out.println("Please select one of the following accounts to edit by entering the corresponding number: ");
-                            System.out.println();
-                            ViewAccounts();
-                            TextSpacer();
+                        }
+                    }
 
-                            int m = accScan.nextInt();
-                            for (int l = 0; l < accountList.size(); l++) {
-                                if (m == l) {
-                                    System.out.println(accountList.get(m));
-                                    System.out.println("Please enter the following account details: ");
-                                    System.out.println("First name: ");
-                                    accountList.get(m).setFirstName(accScan.next());
-                                    System.out.println("Last name: ");
-                                    accountList.get(m).setLastName(accScan.next());
-                                    System.out.println("Full address: ");
-                                    accountList.get(m).setAddress(accScan.next());
-
-                                    System.out.println("The new account details are as follows: ");
-                                    System.out.println("First name: " + accountList.get(m).firstName);
-                                    System.out.println("Last name: " + accountList.get(m).lastName);
-                                    System.out.println("Full address: " + accountList.get(m).address);
-
-                                }
-                            }
-
-                            break;
-                        case 5:
+                    break;
+                case 5:
 //                          back to main menu
-                            return;
-                        default:
-                            System.out.println("Please choose a valid option");
-                            break;
-                    }
-
-
-                } else {
-                    System.out.println("Passcode is incorrect, please try again.");
-//                    ensuring correct grammar if their is only 1 attempt left
-                    if(attempts != 1) {
-                        System.out.println("You have " + attempts + " attempts");
-                    } else {
-                        System.out.println("You have " + attempts + " attempt");
-                    }
-
-                }
-                if (attempts == 0) {
-                    System.out.println("You have tried too many times. The Program will now quit");
-                    System.exit(0);
-            }
-
-
+                    return;
+                default:
+                    System.out.println("Please choose a valid option");
+                    break;
             }
         }
-
-
-    public void AddAccounts() {
 
     }
 
