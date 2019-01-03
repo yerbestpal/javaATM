@@ -14,7 +14,9 @@ public class ATM {
         Menu menu = new Menu();
 
         //methods
-        menu.menu();
+        menu.TestAccount();
+        menu.login();
+        menu.userMenu();
 
     }
 

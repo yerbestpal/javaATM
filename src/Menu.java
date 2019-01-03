@@ -9,8 +9,91 @@ public class Menu {
     private ArrayList<AccountCreator> accountList = new ArrayList<>();
     private Scanner myScan = new Scanner(System.in);
 
+
+    public void login() {
+
+        Scanner accScan = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Welcome. Please choose an option: ");
+            System.out.println("1: Login");
+            System.out.println("2: Administrator Settings");
+            int menuInput = accScan.nextInt();
+            switch (menuInput) {
+                case 1: // login
+                    System.out.println("Please choose an account to login to: ");
+                    System.out.println("PIN for Bob Smith is: " + accountList.get(0).getPIN());
+                    ViewAccounts();
+                    int a = accScan.nextInt();
+                    for (int b = 0; b < accountList.size(); b++) {
+                        for (int attempts = 3; attempts >= 0; attempts--) {
+                            if (a == b) {
+                                System.out.println("Please enter the PIN for " + accountList.get(a) + ": ");
+                                int c = accScan.nextInt();
+                                if (c == accountList.get(a).getPIN()) {
+                                    System.out.println("pin is correct");
+                                    TextSpacer();
+                                    userMenu();
+                                } else if (attempts == 0) {
+                                    System.out.println("Too many attempts.");
+                                    System.exit(0);
+                                } else {
+                                    System.out.println("pin is incorrect, please try again.");
+                                    //  ensuring correct grammar if their is only 1 attempt left
+                                    if (attempts != 1) {
+                                        System.out.println("You have " + attempts + " attempts");
+                                    } else {
+                                        System.out.println("You have " + attempts + " attempt");
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                    break;
+                case 2: // administrator settings
+                    Admin:
+                    { // block is useful for creating a point to break out of loops!
+                        int passcode;
+
+                        for (int attempts = 3; attempts >= 0; attempts--) {
+                            System.out.println("Please enter the administrators passcode: "); // passcode is 1234
+                            passcode = myScan.nextInt();
+
+                            if (passcode == 1234) {
+                                System.out.println("Correct");
+                                TextSpacer();
+                                break;
+                            } else {
+                                System.out.println("Passcode is incorrect, please try again.");
+//                    ensuring correct grammar if their is only 1 attempt left
+                                if (attempts != 1) {
+                                    System.out.println("You have " + attempts + " attempts");
+                                } else {
+                                    System.out.println("You have " + attempts + " attempt");
+                                }
+                                if (attempts == 0) {
+                                    break Admin;
+                                }
+                            }
+                        }
+                        admin();
+                        break;
+                    }
+                default:
+                    System.out.println("Please choose a valid option");
+                    break;
+            }
+
+        }
+
+    }
+
+
+
     //     main menu for user to choose options
-    public void menu() {
+    public void userMenu() {
 
         while (true) {
             System.out.println("Welcome. Please choose an option");
@@ -20,8 +103,6 @@ public class Menu {
             System.out.println("4: Transfer Cash");
             System.out.println("5: Mini Statement");
             System.out.println("6: Change PIN");
-            System.out.println("7: Administrator Settings");
-
 
             int menuInput = this.myScan.nextInt();
 
@@ -44,35 +125,6 @@ public class Menu {
                 case 6:
                     // TODO - change PIN
                     break;
-                case 7:
-                    block:
-                    { // this is useful for creating a point to break out of loops!
-                        int passcode = 0;
-
-                        for (int attempts = 3; attempts >= 0; attempts--) {
-                            System.out.println("Please enter the administrators passcode: "); // passcode is 1234
-                            passcode = myScan.nextInt();
-
-                            if (passcode == 1234) {
-                                System.out.println("Correct");
-                                TextSpacer();
-                                break;
-                            } else {
-                                System.out.println("Passcode is incorrect, please try again.");
-//                    ensuring correct grammar if their is only 1 attempt left
-                                if (attempts != 1) {
-                                    System.out.println("You have " + attempts + " attempts");
-                                } else {
-                                    System.out.println("You have " + attempts + " attempt");
-                                }
-                                if (attempts == 0) {
-                                    break block;
-                                }
-                            }
-                        }
-                        admin();
-                        break;
-                    }
                 default:
                     System.out.println("Please choose a valid option");
                     break;
@@ -84,7 +136,7 @@ public class Menu {
     }
 
 
-    public void admin() {
+    private void admin() {
         while (true) {
             System.out.println("1: Add Account");
             System.out.println("2: Remove Account");
@@ -107,7 +159,6 @@ public class Menu {
                     account.setLastName(accScan.nextLine());
                     System.out.println("Full address: ");
                     account.setAddress(accScan.nextLine());
-                    // TODO - Generate 4-digit PIN for accounts
                     account.setPIN();
                     System.out.println("New account PIN is: " + account.getPIN());
 
@@ -185,7 +236,7 @@ public class Menu {
     }
 
 
-    public void ViewAccounts() {
+    private void ViewAccounts() {
 //      view accounts
 //      iterates through accountList and prints contents alongside position number
         for (int k = 0; k < accountList.size(); k++) {
@@ -194,10 +245,20 @@ public class Menu {
     }
 
 
-    public void TextSpacer() {
+    private void TextSpacer() {
         System.out.println();
         System.out.println("-------------------------------------");
         System.out.println();
+    }
+
+
+    public void TestAccount() {
+        AccountCreator account = new AccountCreator();
+        account.setFirstName("Bob");
+        account.setLastName("Smith");
+        account.setAddress("5 Rain Road");
+        account.setPIN();
+        accountList.add(account);
     }
 }
 
