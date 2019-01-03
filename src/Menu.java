@@ -6,8 +6,8 @@ public class Menu {
 
     //     ArrayList containing user bank accounts
     // TODO - eventually replace ArrayList with database
-    ArrayList<AccountCreator> accountList = new ArrayList<AccountCreator>();
-    Scanner myScan = new Scanner(System.in);
+    private ArrayList<AccountCreator> accountList = new ArrayList<>();
+    private Scanner myScan = new Scanner(System.in);
 
     //     main menu for user to choose options
     public void menu() {
@@ -102,11 +102,11 @@ public class Menu {
 //                          add account
                     System.out.println("Please enter the following account details: ");
                     System.out.println("First name: ");
-                    account.setFirstName(accScan.next());
+                    account.setFirstName(accScan.nextLine());
                     System.out.println("Last name: ");
-                    account.setLastName(accScan.next());
+                    account.setLastName(accScan.nextLine());
                     System.out.println("Full address: ");
-                    account.setAddress(accScan.next());
+                    account.setAddress(accScan.nextLine());
                     // TODO - Generate 4-digit PIN for accounts
                     account.setPIN();
                     System.out.println("New account PIN is: " + account.getPIN());
@@ -158,16 +158,16 @@ public class Menu {
                             System.out.println(accountList.get(m));
                             System.out.println("Please enter the following account details: ");
                             System.out.println("First name: ");
-                            accountList.get(m).setFirstName(accScan.next());
+                            accountList.get(m).setFirstName(accScan.nextLine());
                             System.out.println("Last name: ");
-                            accountList.get(m).setLastName(accScan.next());
+                            accountList.get(m).setLastName(accScan.nextLine());
                             System.out.println("Full address: ");
-                            accountList.get(m).setAddress(accScan.next());
+                            accountList.get(m).setAddress(accScan.nextLine());
 
                             System.out.println("The new account details are as follows: ");
-                            System.out.println("First name: " + accountList.get(m).firstName);
-                            System.out.println("Last name: " + accountList.get(m).lastName);
-                            System.out.println("Full address: " + accountList.get(m).address);
+                            System.out.println("First name: " + accountList.get(m).getFirstName());
+                            System.out.println("Last name: " + accountList.get(m).getLastName());
+                            System.out.println("Full address: " + accountList.get(m).getAddress());
 
                         }
                     }
