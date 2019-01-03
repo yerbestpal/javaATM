@@ -4,7 +4,7 @@ public class AccountCreator {
     String firstName;
     String lastName;
     String address;
-    String pin;
+    int PIN = 0;
     double balance = 0;
 
 
@@ -30,6 +30,7 @@ public class AccountCreator {
 
     public void setLastName(String last) {
 
+        // TODO - fix error where setLastName only stores the first word of address
         lastName = last;
 
     }
@@ -38,6 +39,15 @@ public class AccountCreator {
     public void setAddress(String addr) {
 
         address = addr;
+
+    }
+
+
+    public int setPIN() {
+
+
+        PIN = (int) (Math.random() * 9000) + 1000;
+        return PIN;
 
     }
 
@@ -61,6 +71,13 @@ public class AccountCreator {
     public String getAddress() {
 
         return address;
+
+    }
+
+
+    public int getPIN() {
+
+        return PIN;
 
     }
 

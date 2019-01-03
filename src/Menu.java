@@ -88,7 +88,7 @@ public class Menu {
         while (true) {
             System.out.println("1: Add Account");
             System.out.println("2: Remove Account");
-            System.out.println("3: View Accounts");
+            System.out.println("3: View Account Details");
             System.out.println("4: Edit Accounts");
             System.out.println("5: Back to main menu");
             int menuScan = myScan.nextInt();
@@ -107,6 +107,9 @@ public class Menu {
                     account.setLastName(accScan.next());
                     System.out.println("Full address: ");
                     account.setAddress(accScan.next());
+                    // TODO - Generate 4-digit PIN for accounts
+                    account.setPIN();
+                    System.out.println("New account PIN is: " + account.getPIN());
 
                     accountList.add(account);
 
@@ -125,9 +128,22 @@ public class Menu {
                     }
                     break;
                 case 3:
-//                      view accounts
+                    System.out.println("Please select one of the following accounts to view by entering the corresponding number: ");
+                    System.out.println();
                     ViewAccounts();
                     TextSpacer();
+
+                    int c = accScan.nextInt();
+                    for (int d = 0; d < accountList.size(); d++) {
+                        if (c == d) {
+                            System.out.println(accountList.get(c));
+                            System.out.println("First name: " + accountList.get(c).getFirstName());
+                            System.out.println("Last name: " + accountList.get(c).getLastName());
+                            System.out.println("Full address: " + accountList.get(c).getAddress());
+                            System.out.println("PIN number: " + accountList.get(c).getPIN());
+                            TextSpacer();
+                        }
+                    }
                     break;
                 case 4:
 //                      view and edit accounts
