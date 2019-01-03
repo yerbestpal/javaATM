@@ -1,11 +1,11 @@
 public class AccountCreator {
 
     // variables
-    String firstName;
-    String lastName;
-    String address;
-    int PIN = 0;
-    double balance = 0;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private int PIN = 0;
+    private double balance = 0;
 
 
 
