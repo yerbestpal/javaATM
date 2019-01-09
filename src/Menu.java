@@ -34,6 +34,7 @@ public class Menu {
                                     System.out.println("pin is correct");
                                     TextSpacer();
                                     userMenu();
+
                                 } else if (attempts == 0) {
                                     System.out.println("Too many attempts.");
                                     System.exit(0);
@@ -105,10 +106,10 @@ public class Menu {
             System.out.println("6: Change PIN");
 
             int menuInput = this.myScan.nextInt();
-
             switch (menuInput) {
                 case 1:
                     // TODO - display balance
+
                     break;
                 case 2:
                     // TODO - withdraw cash
@@ -204,6 +205,7 @@ public class Menu {
                     TextSpacer();
 
                     int m = accScan.nextInt();
+                    accScan.nextLine(); // This must always be placed between the last .next...() and a following .nextLine()
                     for (int l = 0; l < accountList.size(); l++) {
                         if (m == l) {
                             System.out.println(accountList.get(m));
