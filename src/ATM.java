@@ -3,8 +3,6 @@
  * Proof of concept ATM program to for practice
  */
 
-import java.util.ArrayList;
-
 // driver class
 public class ATM {
 
@@ -13,8 +11,11 @@ public class ATM {
         // instantiating
         Menu menu = new Menu();
 
-        //methods
-        menu.menu();
+
+        //method calls
+        menu.TestAccount();
+        menu.login();
+        menu.userMenu();
 
     }
 

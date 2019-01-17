@@ -30,7 +30,6 @@ public class AccountCreator {
 
     public void setLastName(String last) {
 
-        // TODO - fix error where setLastName only stores the first word of address
         lastName = last;
 
     }
