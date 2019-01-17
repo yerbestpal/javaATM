@@ -40,7 +40,7 @@ public class Menu {
 
                                     System.out.println("pin is correct");
                                     TextSpacer();
-                                    userMenu();
+                                    userMenu(accountList.get(a));
 
                                 } else if (attempts == 0) {
 
@@ -121,7 +121,7 @@ public class Menu {
 
 
     //     main menu for user to choose options
-    public void userMenu() {
+    public void userMenu(AccountCreator account) {
 
         while (true) {
 
@@ -138,7 +138,7 @@ public class Menu {
             switch (menuInput) {
 
                 case 1:
-                    // TODO - display balance
+                    account.getBalance();
                     break;
                 case 2:
                     // TODO - withdraw cash
