@@ -15,7 +15,6 @@ public class ATM {
         //method calls
         menu.TestAccount();
         menu.login();
-        menu.userMenu();
 
     }
 
