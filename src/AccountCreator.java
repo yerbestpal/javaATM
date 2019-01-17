@@ -80,4 +80,8 @@ public class AccountCreator {
 
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
 }
