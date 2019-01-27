@@ -25,6 +25,10 @@ public class Menu {
                 case 1: // login
                     System.out.println("Please choose an account to login to: ");
                     System.out.println("PIN for Bob Smith is: " + accountList.get(0).getPIN());
+                    System.out.println("PIN for Jane Jones is: " + accountList.get(1).getPIN());
+                    System.out.println("Don't forget that Bob and Jane are just default applications, and you can add " +
+                            "as many accounts as you would like within the limits of ArrayList!");
+                    TextSpacer();
                     ViewAccounts();
                     int a = accScan.nextInt();
 
@@ -120,7 +124,7 @@ public class Menu {
     }
 
 
-    //     main menu for user to choose options
+    // main menu for user to choose options
     public void userMenu(AccountCreator account) {
 
         while (true) {
@@ -138,22 +142,53 @@ public class Menu {
             switch (menuInput) {
 
                 case 1:
-                    account.getBalance();
+                    // display balance
+                    System.out.println("Balance: £" + account.getBalance());
+                    TextSpacer();
                     break;
                 case 2:
-                    // TODO - withdraw cash
+                    // withdraw cash
+                    System.out.println("How much would you like to withdraw?");
+                    account.withdrawCash();
+                    System.out.println("Balance: £" + account.getBalance());
+                    TextSpacer();
                     break;
                 case 3:
-                    // TODO - deposit cash
+                    // deposit cash
+                    System.out.println("How much cash would you like to deposit?");
+                    account.depositCash();
+                    System.out.println("Balance: £" + account.getBalance());
+                    TextSpacer();
                     break;
                 case 4:
-                    // TODO - Transfer cash
+                    // TODO - Transfer cash to other accounts
                     break;
                 case 5:
                     // TODO - mini statement
                     break;
                 case 6:
-                    // TODO - change PIN
+                    // change pin
+                    System.out.println("Your current PIN is " + account.getPIN());
+                    System.out.println("Would you like to change your PIN?");
+                    System.out.println("1: yes || 2: no");
+                    int decision = myScan.nextInt();
+
+                    switch (decision) {
+
+                        case 1:
+                            //change pin
+                            account.setPIN();
+                            System.out.println("Your new PIN is " + account.getPIN());
+                            break;
+                        case 2:
+                            // don't change pin
+                            System.out.println("Your PIN remains " + account.getPIN());
+                            break;
+                        default:
+                            System.out.println("Please select option 1 or 2");
+
+                    }
+
                     break;
                 default:
                     System.out.println("Please choose a valid option");
@@ -269,7 +304,7 @@ public class Menu {
 
                     break;
                 case 5:
-//                          back to main menu
+//                  back to main menu
                     return;
                 default:
                     System.out.println("Please choose a valid option");
@@ -300,13 +335,28 @@ public class Menu {
     }
 
 
-    public void TestAccount() {
+    // creates default accounts for testing purposes
+    // Two are necessary to test cash transfer capabilities
+    public void TestAccount1() {
 
         AccountCreator account = new AccountCreator();
         account.setFirstName("Bob");
         account.setLastName("Smith");
         account.setAddress("5 Rain Road");
         account.setPIN();
+        account.setTestBalance(300);
+        accountList.add(account);
+
+    }
+
+    public void TestAccount2() {
+
+        AccountCreator account = new AccountCreator();
+        account.setFirstName("Jane");
+        account.setLastName("Jones");
+        account.setAddress("16 Sun Street");
+        account.setPIN();
+        account.setTestBalance(3799);
         accountList.add(account);
 
     }

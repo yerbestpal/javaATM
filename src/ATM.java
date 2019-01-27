@@ -13,7 +13,8 @@ public class ATM {
 
 
         //method calls
-        menu.TestAccount();
+        menu.TestAccount1();
+        menu.TestAccount2();
         menu.login();
 
     }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class AccountCreator {
 
     // variables
@@ -6,7 +8,7 @@ public class AccountCreator {
     private String address;
     private int PIN = 0;
     private double balance = 0;
-
+    Scanner myScan = new Scanner(System.in);
 
 
     // giving object sane name
@@ -16,7 +18,6 @@ public class AccountCreator {
         return firstName + " " + lastName;
 
     }
-
 
 
     // set
@@ -51,6 +52,22 @@ public class AccountCreator {
     }
 
 
+    public double setBalance() {
+
+        balance = myScan.nextInt();
+        return balance;
+
+    }
+
+
+    // this setter is used specifically to create a default balance for the test account 'Bob Smith'
+    public void setTestBalance(double testBalance) {
+
+        balance = testBalance;
+
+    }
+
+
     // get
 
     public String getFirstName() {
@@ -80,8 +97,25 @@ public class AccountCreator {
 
     }
 
+
     public double getBalance() {
         return balance;
+    }
+
+
+    // other custom methods
+
+    public void withdrawCash() {
+
+        balance -= myScan.nextInt();
+
+    }
+
+
+    public void depositCash() {
+
+        balance += myScan.nextInt();
+
     }
 
 }
