@@ -1,33 +1,29 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+class Menu {
 
     Account account = new Account();
     private Scanner myScan = new Scanner(System.in);
     // TODO - eventually replace ArrayList with database
-    // ArrayList containing account objects created with Account
     private ArrayList<Account> accountList = new ArrayList<>();
 
-    public void login() {
-
+    void login() {
         Scanner accScan = new Scanner(System.in);
 
         while (true) {
-
             System.out.println("Welcome. Please choose an option: ");
             System.out.println("1: Login");
             System.out.println("2: Administrator Settings");
             int menuInput = accScan.nextInt();
 
             switch (menuInput) {
-
                 case 1: // login
-                    System.out.println("Please choose an account to login to: ");
-                    System.out.println("PIN for Bob Smith is: " + accountList.get(0).getPIN());
-                    System.out.println("PIN for Jane Jones is: " + accountList.get(1).getPIN());
-                    System.out.println("Don't forget that Bob and Jane are just default applications, and you can add " +
-                            "as many accounts as you would like within the limits of ArrayList!");
+                    System.out.println("Please choose an account to login to: \n" +
+                                        "PIN for Bob Smith is: " + accountList.get(0).getPIN() + "\n" +
+                                        "PIN for Jane Jones is: " + accountList.get(1).getPIN() + "\n" +
+                                        "Don't forget that Bob and Jane are just built-in accounts, and you can add " +
+                                        "as many accounts as you would like within the limits of ArrayList!");
                     TextSpacer();
                     ViewAccounts();
                     int a = accScan.nextInt();
@@ -125,7 +121,7 @@ public class Menu {
 
 
     // main menu for user to choose options
-    public void userMenu(Account account) {
+    private void userMenu(Account account) {
 
         while (true) {
 
@@ -177,7 +173,7 @@ public class Menu {
 
                         case 1:
                             //change pin
-                            account.setPIN();
+                            account.generatePIN();
                             System.out.println("Your new PIN is " + account.getPIN());
                             break;
                         case 2:
@@ -228,7 +224,7 @@ public class Menu {
                     account.setLastName(accScan.nextLine());
                     System.out.println("Full address: ");
                     account.setAddress(accScan.nextLine());
-                    account.setPIN();
+                    account.generatePIN();
                     System.out.println("New account PIN is: " + account.getPIN());
                     accountList.add(account);
                     break;
@@ -319,46 +315,27 @@ public class Menu {
 //      view accounts
 //      iterates through accountList and prints contents alongside position number
         for (int k = 0; k < accountList.size(); k++) {
-
             System.out.print(k + ": " + accountList.get(k) + " || ");
-
         }
     }
 
 
     private void TextSpacer() {
-
         System.out.println();
         System.out.println("-------------------------------------");
         System.out.println();
-
     }
 
 
     // creates default accounts for testing purposes
-    // Two are necessary to test cash transfer capabilities
-    public void TestAccount1() {
-
+    void testAccountBuilder(String firstName, String lastName, String address, double balance) {
         Account account = new Account();
-        account.setFirstName("Bob");
-        account.setLastName("Smith");
-        account.setAddress("5 Rain Road");
-        account.setPIN();
-        account.setTestBalance(300);
+        account.setFirstName(firstName);
+        account.setLastName(lastName);
+        account.setAddress(address);
+        account.generatePIN();
+        account.setTestBalance(balance);
         accountList.add(account);
-
-    }
-
-    public void TestAccount2() {
-
-        Account account = new Account();
-        account.setFirstName("Jane");
-        account.setLastName("Jones");
-        account.setAddress("16 Sun Street");
-        account.setPIN();
-        account.setTestBalance(3799);
-        accountList.add(account);
-
     }
 }
 

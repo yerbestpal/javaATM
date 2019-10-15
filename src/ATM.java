@@ -3,19 +3,17 @@
  * Proof of concept ATM program to for practice
  */
 
-// driver class
 public class ATM {
 
     public static void main(String[] args) {
 
-        // instantiating
         Menu menu = new Menu();
-
-
-        //method calls
-        menu.TestAccount1();
-        menu.TestAccount2();
+        // 2 accounts are necessary to test cash transfer capabilities
+        menu.testAccountBuilder("Bob", "Smith", "5 Rain Road", 300);
+        menu.testAccountBuilder("Jane", "Jones", "16 Sun Street", 3799);
         menu.login();
+
+        Account account = new Account();
 
     }
 
