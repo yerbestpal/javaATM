@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class AccountCreator {
+public class Account {
 
     // variables
     private String firstName;

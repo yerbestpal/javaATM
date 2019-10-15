@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class Menu {
 
-    AccountCreator account = new AccountCreator();
+    Account account = new Account();
     private Scanner myScan = new Scanner(System.in);
     // TODO - eventually replace ArrayList with database
-    // ArrayList containing account objects created with AccountCreator
-    private ArrayList<AccountCreator> accountList = new ArrayList<>();
+    // ArrayList containing account objects created with Account
+    private ArrayList<Account> accountList = new ArrayList<>();
 
     public void login() {
 
@@ -125,7 +125,7 @@ public class Menu {
 
 
     // main menu for user to choose options
-    public void userMenu(AccountCreator account) {
+    public void userMenu(Account account) {
 
         while (true) {
 
@@ -214,7 +214,7 @@ public class Menu {
             int menuScan = myScan.nextInt();
 
             Scanner accScan = new Scanner(System.in);
-//                     create new instance of AccountCreator
+//                     create new instance of Account
 
 
             switch (menuScan) {
@@ -339,7 +339,7 @@ public class Menu {
     // Two are necessary to test cash transfer capabilities
     public void TestAccount1() {
 
-        AccountCreator account = new AccountCreator();
+        Account account = new Account();
         account.setFirstName("Bob");
         account.setLastName("Smith");
         account.setAddress("5 Rain Road");
@@ -351,7 +351,7 @@ public class Menu {
 
     public void TestAccount2() {
 
-        AccountCreator account = new AccountCreator();
+        Account account = new Account();
         account.setFirstName("Jane");
         account.setLastName("Jones");
         account.setAddress("16 Sun Street");
