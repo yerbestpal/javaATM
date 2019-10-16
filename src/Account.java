@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Account {
 
-    // variables
     private String firstName;
     private String lastName;
     private String address;
@@ -11,37 +10,40 @@ public class Account {
     private Scanner myScan = new Scanner(System.in);
 
 
+    public Account() {
+
+    }
+
+    public Account(String firstName, String lastName, String address, double balance) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.PIN = generatePIN();
+        this.balance = balance;
+    }
+
+
     // giving object sane name
     @Override
     public String toString() {
         return firstName + " " + lastName;
     }
 
-    void setFirstName(String first) {
-        firstName = first;
+
+    void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    void setLastName(String last) {
-        lastName = last;
+    void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    void setAddress(String addr) {
-        address = addr;
+    void setAddress(String address) {
+        this.address = address;
     }
 
-    void generatePIN() {
-        PIN = (int) (Math.random() * 9000) + 1000;
-    }
+    void setBalance(double balance) {this.balance = balance; }
 
-    public double setBalance() {
-        balance = myScan.nextInt();
-        return balance;
-    }
-
-    // this setter is used specifically to create a default balance for the test account 'Bob Smith'
-    void setTestBalance(double testBalance) {
-        balance = testBalance;
-    }
 
     String getFirstName() {
         return firstName;
@@ -64,12 +66,12 @@ public class Account {
     }
 
 
-    void withdrawCash() {
-        balance -= myScan.nextInt();
-    }
+    void withdrawCash() { balance -= myScan.nextInt(); }
 
-    void depositCash() {
-        balance += myScan.nextInt();
+    void depositCash() { balance += myScan.nextInt(); }
+
+    int generatePIN() {
+        return (int) (Math.random() * 9000) + 1000;
     }
 
 }
